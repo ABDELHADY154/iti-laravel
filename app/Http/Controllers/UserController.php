@@ -12,6 +12,16 @@ class UserController extends Controller
         $this->middleware('auth');
     }
 
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Contracts\Support\Renderable
+     */
+    public function index()
+    {
+        $users = User::all();
+        return view('layouts.Users.index', ['users' => $users]);
+    }
 
 
     public function create()
