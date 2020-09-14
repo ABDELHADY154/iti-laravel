@@ -34,6 +34,25 @@
 
                     </div>
                 </li>
+                <li class="nav-item dropdown">
+                    <span id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        Posts
+                    </span>
+
+                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item  {{ Route::currentRouteName() == 'post.index'? 'active' : '' }}"
+                            href="{{ route('post.index') }}">
+                            Posts List
+                        </a>
+                        <hr>
+                        <a class="dropdown-item {{ Route::currentRouteName() == 'post.create'? 'active' : '' }}"
+                            href="{{ route('post.create') }}">
+                            New Post
+                        </a>
+
+                    </div>
+                </li>
             </ul>
 
             <!-- Right Side Of Navbar -->

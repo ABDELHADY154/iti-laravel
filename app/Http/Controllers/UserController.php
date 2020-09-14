@@ -17,9 +17,9 @@ class UserController extends Controller
      *
      * @return \Illuminate\Contracts\Support\Renderable
      */
-    public function index()
+    public function index(Request $request)
     {
-        $users = User::all();
+        $users = User::paginate($request->query('limit', 5));
         return view('layouts.Users.index', ['users' => $users]);
     }
 
