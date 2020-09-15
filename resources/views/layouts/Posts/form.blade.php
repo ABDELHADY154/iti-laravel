@@ -1,25 +1,25 @@
 @csrf
 
-<div class="form-group row">
+{{-- <div class="form-group row">
     <label for="desc" class="col-md-4 col-form-label text-md-right">{{ __('Choose A User') }}</label>
-    <div class="col">
-        <select name="user_id" id="user_id" class="form-control">
-            <option value="">Not Set</option>
-            @foreach($users as $user)
-            @if(isset($post) && $post->user && $user->id==$post->user->id )
-            <option value="{{$user->id}}" selected>{{$user->id}} | {{$user->name}}</option>
-            @endif
-            <option value="{{$user->id}}">{{$user->id}} | {{$user->name}}</option>
-            @endforeach
-        </select>
-        @if($errors->first('user_id'))
-        <span class="text-danger">
-            {{$errors->first('user_id')}}
-        </span>
+<div class="col">
+    <select name="user_id" id="user_id" class="form-control">
+        <option value="">Not Set</option>
+        @foreach($users as $user)
+        @if(isset($post) && $post->user && $user->id==$post->user->id )
+        <option value="{{$user->id}}" selected>{{$user->id}} | {{$user->name}}</option>
         @endif
-    </div>
-
+        <option value="{{$user->id}}">{{$user->id}} | {{$user->name}}</option>
+        @endforeach
+    </select>
+    @if($errors->first('user_id'))
+    <span class="text-danger">
+        {{$errors->first('user_id')}}
+    </span>
+    @endif
 </div>
+
+</div> --}}
 <div class="form-group row">
     <label for="title" class="col-md-4 col-form-label text-md-right">{{ __('Title') }}</label>
 

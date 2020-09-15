@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\PostRequest;
 use App\Post;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PostController extends Controller
 {
@@ -40,21 +42,24 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(PostRequest $request)
     {
-        $request->validate([
-            'title' => ['required', 'string'],
-            'slug' => ['required', 'string'],
-            'desc' => ['required', 'string'],
-            'body' => ['required', 'string'],
-            'enabled' => ['required', 'boolean'],
-            'user_id' => ['required', 'exists:users,id'],
-            'published_at' => ['required']
-        ]);
+        // $request->validate([
+        //     'title' => ['required', 'string'],
+        //     'slug' => ['required', 'string'],
+        //     'desc' => ['required', 'string'],
+        //     'body' => ['required', 'string'],
+        //     'enabled' => ['required', 'boolean'],
+        //     'user_id' => ['required', 'exists:users,id'],
+        //     'published_at' => ['required']
+        // ]);
 
         // dd($request->all());
-        $post = Post::create($request->all());
-        return redirect(route('post.show', $post));
+
+        $data = $request->except('user_id');
+        Auth::user()->posts()->save(new Post($data));
+        // $post = Post::create();
+        return redirect(route('post.index'));
     }
 
     /**
@@ -88,17 +93,17 @@ class PostController extends Controller
      * @param  \App\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Post $post)
+    public function update(PostRequest $request, Post $post)
     {
-        $request->validate([
-            'title' => ['required', 'string'],
-            'slug' => ['required', 'string'],
-            'desc' => ['required', 'string'],
-            'body' => ['required', 'string'],
-            'enabled' => ['required', 'boolean'],
-            'user_id' => ['required', 'exists:users,id'],
-            'published_at' => ['required']
-        ]);
+        // $request->validate([
+        //     'title' => ['required', 'string'],
+        //     'slug' => ['required', 'string'],
+        //     'desc' => ['required', 'string'],
+        //     'body' => ['required', 'string'],
+        //     'enabled' => ['required', 'boolean'],
+        //     'user_id' => ['required', 'exists:users,id'],
+        //     'published_at' => ['required']
+        // ]);
         $post->update($request->all());
         return redirect(route('post.show', $post));
     }
