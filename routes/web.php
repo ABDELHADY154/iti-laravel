@@ -18,6 +18,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+
+
 Auth::routes();
 
 
@@ -28,6 +30,17 @@ Route::get('/home/user/{user}', 'UserController@show')->name('user.show');
 Route::delete('/home/user/{user}', 'UserController@destroy')->name('user.destroy');
 Route::get('/home/user/{user}/edit', 'UserController@edit')->name('user.edit');
 Route::resource('/home/post', 'PostController')->middleware('auth');
+
+
+// *************//
+Route::get('login/github', 'Auth\LoginController@redirectToProvider')->name('login-github');
+Route::get('login/github/callback', 'Auth\LoginController@handleProviderCallback')->name('github-callback');
+
+
+
+// *************//
+Route::get('login/facebook', 'Auth\LoginController@redirectToProvider2')->name('login-facebook');
+Route::get('login/facebook/callback', 'Auth\LoginController@handelFacebookCallback')->name('facebook-callback');
 
 Route::fallback(function () {
     return 'Hm, why did you land here somehow?';
